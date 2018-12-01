@@ -9,7 +9,7 @@ public class Ball : MonoBehaviourPunCallbacks, IPunObservable {
 
 	Vector3 initPos = Vector3.zero;
 
-    public static bool experimentStateSync = true;
+    public static bool experimentStateSync = false;
 
 	public void Awake() {
 		// used in GameManager.cs: we keep track of the localPlayer instance to prevent instanciation when levels are synchronized
