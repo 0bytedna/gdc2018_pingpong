@@ -49,7 +49,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable {
 
 	void OnCollisionEnter2D(Collision2D collision) {
         // if local ball is colliding with stricker (mine) then apply an impulse.
-		if (collision.gameObject.tag == "ball" && photonView.IsMine) {
+        if (collision.gameObject.tag == "ball" && (photonView.IsMine || Ball.experimentStateSync)) {
 			if (collision.contacts.Length > 0) {
 				Vector2 collisionNormal = Vector2.zero;
 				collisionNormal = -collision.contacts[0].normal;

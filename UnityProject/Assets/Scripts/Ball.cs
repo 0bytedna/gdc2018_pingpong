@@ -9,14 +9,18 @@ public class Ball : MonoBehaviourPunCallbacks, IPunObservable {
 
 	Vector3 initPos = Vector3.zero;
 
+    public static bool experimentStateSync = true;
+
 	public void Awake() {
 		// used in GameManager.cs: we keep track of the localPlayer instance to prevent instanciation when levels are synchronized
 		if (photonView.IsMine) {
 			localBall = gameObject;
 		} else {
-            // disable the physics simulation for the remote player.  Positions are synched for remote player.
-			GetComponent<Rigidbody2D>().simulated = false;
-			GetComponent<CircleCollider2D>().isTrigger = true;
+            if (!experimentStateSync) {
+                // disable the physics simulation for the remote player.  Positions are synched for remote player.
+                GetComponent<Rigidbody2D>().simulated = false;
+                GetComponent<CircleCollider2D>().isTrigger = true;
+            }
 		}
 
 		if (PhotonNetwork.IsMasterClient) {
@@ -35,14 +39,14 @@ public class Ball : MonoBehaviourPunCallbacks, IPunObservable {
 
 	public void Start() {
 		initPos = transform.position;
-		if (photonView.IsMine) {
+		if (photonView.IsMine || experimentStateSync) {
 			Reset();
 		}
 	}
 
 	public void Update() {
 		Rigidbody2D rb = GetComponent<Rigidbody2D>();
-		if (photonView.IsMine) {
+		if (photonView.IsMine || experimentStateSync) {
             // reset the ball position if the velocity is very less.
 			if (rb.velocity.magnitude <= 0.001f) {
 				Reset();
@@ -51,7 +55,7 @@ public class Ball : MonoBehaviourPunCallbacks, IPunObservable {
 	}
 
 	void Reset() {
-		if (photonView.IsMine) {
+		if (photonView.IsMine || experimentStateSync) {
 			transform.SetPositionAndRotation(initPos, Quaternion.identity);
 			GetComponent<Rigidbody2D>().AddForce(Vector2.up * -2.0f + Vector2.left * 10.0f, ForceMode2D.Impulse);
 		}
