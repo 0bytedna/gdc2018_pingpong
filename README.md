@@ -14,20 +14,20 @@ Git contents
         
         SDL sdk for OpenGL
         ------------------
-        Directory : <git url>/SDL-07b7c1005a23
+        Directory : <git root folder>/SDL-07b7c1005a23
         
         Xcode project
         -------------
-        Directory : <git url>/XcodeProjectUsingDeterminism
-        Project file : <git url>/XcodeProjectUsingDeterminism/GDCPhysics.xcodeproj
+        Directory : <git root folder>/XcodeProjectUsingDeterminism
+        Project file : <git root folder>/XcodeProjectUsingDeterminism/GDCPhysics.xcodeproj
         
     2) Unity pong project
         - Experiment code of pong game in unity with photon plugin.
-        Directory : <git url>/UnityProject
+        Directory : <git root folder>/UnityProject
 
     3) Workshop assets
         - Unity assets for workshop.
-        Directory : <git url>/Workshop
+        Directory : <git root folder>/Workshop
         
         Workshop guide
-        PDF Document : <git url>/Workshop/GDC2018UnitySceneSetup.pdf
+        PDF Document : <git root folder>/Workshop/GDC2018UnitySceneSetup.pdf
